@@ -115,7 +115,61 @@ papel não atribuível, username existente mas excluído, e OIDC ativo (senha va
 
 T7 é o conjunto mais bem projetado da jornada: aplica particionamento de forma explícita e tem oráculo completo.
 
-> Em andamento: as demais avaliações por arquivo e a síntese entram nos próximos commits.
+### T8: `rules.spec.ts` (Jest)
+
+| Critério | Avaliação |
+|---|---|
+| Nível | Unitário (funções puras). |
+| Técnica | Boa: para `required`, por exemplo, testa string vazia, só espaços, quebra de linha, número, array e objeto. |
+| Cobertura | 171 testes, mas **nenhum** para as quatro regras usadas no formulário: `shouldNotExceedCharLength`, `shouldNotLessThanCharLength`, `maxFileSize` e `validFileTypes`. |
+| Lacunas | O componente `SaveEmployee.vue` (encadeamento das duas requisições, reset do formulário, navegação) não tem teste. O limite de 1 MB da foto também é validado na API (regra `Base64Attachment`), mas nenhum teste original exercita esse limite; o nosso IT-07 cobre 1 MB - 1, 1 MB e 1 MB + 1. |
+
+## 4. Síntese
+
+| Critério | Situação geral |
+|---|---|
+| Nível | Muito teste de **integração de endpoint** (chamado de "unitário" por rodar no PHPUnit) e poucos unitários puros. **Nenhum** teste de sistema da jornada. |
+| Técnica | Particionamento presente, mas sem análise de valor-limite. As exceções são as de T5 e T7. |
+| Cobertura | Fluxo principal e erros básicos cobertos. Faltam ID duplicado, foto inválida, limites de tamanho e a combinação funcionário + login. |
+| Isolamento | Bom na maioria dos testes (fixtures recarregadas por caso, data fixada, mocks), mas **há dependência de ordem/estado** entre `CustomFieldDaoTest` e `CustomFieldAPITest`: a suíte do PIM falha na 2ª execução sem recriar o banco. |
+| Oráculo | O ponto mais fraco. Comparar só a resposta da API esconde efeitos colaterais, e há testes tautológicos (T3) ou sem verificação de argumento (T4). |
+| Legibilidade | Boa nos testes orientados a dados (YAML com nomes descritivos); o custo é a duplicação de configuração em todos os casos. |
+
+### Evidência da execução
+
+Os testes foram executados no ambiente local (`docs/ambiente.md`, seção 9). A suíte do PIM passou inteira
+(674 testes), e as classes da jornada têm cobertura alta: **99,66% das linhas de `EmployeeAPI`** e **100% de
+`IDGeneratorService`**. Mesmo assim, o risco R2 continua sem verificação. Isso confirma, com números, a
+conclusão sobre o oráculo: cobertura mede o que é executado, não o que é conferido.
+
+### Isolamento: a suíte do PIM não é repetível
+
+Ao rodar a suíte do PIM pela segunda vez, `CustomFieldAPITest::testDelete` falhou sem nenhuma mudança no
+código. A investigação mostrou uma **dependência de ordem e de estado** entre testes originais:
+
+1. `CustomFieldAPITest::testDelete` mocka o DAO só parcialmente: `getExistingCustomFieldIds()` é real e consulta
+   o banco. O teste só passa se **não existir** campo customizado com id 1.
+2. `CustomFieldDaoTest` insere campos customizados ("Age", "Medium", "Level"...) e não os remove.
+3. Na primeira execução sobre um banco recém-criado, `Api/` roda antes de `Dao/` e tudo passa. Da segunda vez
+   em diante, os registros deixados pelo DAO já estão lá e o teste da API falha.
+
+Reprodução (12/11/2026): recriar o banco de testes → `CustomFieldAPITest` passa (14 testes) → rodar
+`CustomFieldDaoTest` (passa e deixa 6 linhas em `hs_hr_custom_fields`) → `CustomFieldAPITest` de novo:
+**2 falhas**. É uma violação do princípio de independência dos testes: o resultado depende da ordem e do que
+execuções anteriores deixaram no banco. O CI do projeto não percebe porque sempre parte de um banco novo.
+
+### Lacunas que nossos testes vão cobrir
+
+| Lacuna | Caso planejado (`docs/casos-de-teste.md`) |
+|---|---|
+| Contador de ID não verificado no create com foto (R2) | UT-05, IT-12, ST-12 |
+| `getNextID(..., false)` e transições de dígito | UT-07 |
+| Limites de nome (30/31) e de ID (10/11) | UT-01, UT-03, IT-03, ST-11 |
+| ID duplicado | UT-03, IT-04, ST-06 |
+| Foto com tipo inválido / acima de 1 MB | UT-04, IT-06, IT-07, ST-07 |
+| Senha com espaço; oráculo com lista completa | UT-08, IT-10 |
+| Funcionário + login juntos; atomicidade (R1) | IT-08, IT-11, ST-03 |
+| Jornada de ponta a ponta pela interface | ST-01..ST-13 |
 
 ## Fontes
 
