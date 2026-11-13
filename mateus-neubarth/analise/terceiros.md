@@ -31,6 +31,29 @@ O teste é dividido em seis funções que **dependem da ordem de execução**: `
 **Veredito:** serve como exemplo de estrutura de Page Object, mas **não testa** o cadastro. Os testes não
 conseguem falhar por um defeito funcional.
 
+## P2: touhid-96 (Java + TestNG + Selenium)
+
+Arquivos: `src/test/java/TestRunners/PIMTestRunner.java`, `Pages/PIMPage.java`, `Config/Setup.java`,
+`Utils/PasswordGenerator.java`, `Utils/Utils.java`.
+
+O projeto tem dois testes de PIM: `createEmployeeWithShortPass` (priority 1) e `createEmployee` (priority 2).
+Os dois exercitam o fluxo A2 (com login).
+
+| Critério | Avaliação |
+|---|---|
+| Nível | Sistema (UI), contra o servidor de demonstração. |
+| Técnica | Há um par **válido/inválido** para o tamanho da senha (6 caracteres × 8 caracteres), o que é um começo de particionamento e de análise de limite. Os dados vêm do JavaFaker, e as senhas de um gerador que garante maiúscula, minúscula, número e caractere especial (`PasswordGenerator.checkPass`). |
+| Cobertura | FP + A2 e E6 (senha curta). Não cobre E1–E5, E7 e E8, nem foto (A1) ou ID manual (A3). O README descreve um cenário bem maior (buscar pelo ID, Directory, login como o novo usuário, *My Info*, tipo sanguíneo, suíte de *smoke*), mas o código só implementa os 2 testes de PIM e 3 de login. |
+| Isolamento | Médio. O `@BeforeTest` abre um navegador e faz login uma vez para a classe inteira, e os testes dependem de `priority`. O primeiro termina com o formulário preenchido e **sem salvar**; o segundo só funciona porque clica no menu PIM de novo. O teste positivo grava o funcionário em `src/test/resources/employees.json` para uso posterior: um **estado compartilhado em arquivo versionado**. Não há exclusão dos funcionários criados. |
+| Oráculo | Melhor que P1, mas com problemas: (1) o caso positivo só confere o título "Personal Details"; não confere o nome nem se o usuário foi realmente criado (o que é relevante para o risco R1). (2) **O caso negativo está desatualizado:** ele espera o texto `"Should have at least 7 characters"`, mas a política padrão do OrangeHRM 5.4+ exige 8 (`installer/Migration/V5_4_0/Migration.php`), então a mensagem esperada hoje é "Should have at least 8 characters" e o teste **deve falhar contra a configuração padrão atual** (a confirmar no servidor de demonstração durante a execução). O oráculo foi copiado do comportamento observado numa versão antiga, e não de uma especificação. (3) **O caso positivo também deve falhar hoje:** ele usa `PasswordGenerator.generatePassword(8)`, e nenhuma senha de 8 caracteres atinge a força mínima `strong` da configuração padrão (defeito D2 em `docs/defeitos.md`). |
+| Legibilidade | Boa intenção (Page Factory e `description` em cada `@Test`), mas os locators são **posicionais**: `txtFields.get(5)`, `buttons.get(2)`, `menuItems.get(1)`, `findElements(By.className("oxd-input")).get(4)`. Para saber que `get(5)` é o username, é preciso abrir a página. `createEmployee` e `createEmployeeFail` são quase idênticos (só muda o clique em Save). Há `Thread.sleep(2000)` misturado com `WebDriverWait` de 50 s. |
+| Reprodutibilidade | O README manda rodar com `-PsuiteName="masterRegressionSuite"`, mas não há nenhum XML de suíte TestNG no repositório e o `build.gradle` ignora `suiteName`. As propriedades `username`/`password` são repassadas, mas os testes usam `"Admin"`/`"admin123"` fixos. |
+| Detalhes de código | `random.nextInt(charSet.length()-1)` nunca sorteia o último caractere do conjunto (`/`). `Utils.getFakerInfo()` é chamado três vezes, então o username (`nome.sobrenome`) não corresponde ao nome do funcionário cadastrado. |
+| Lacunas | Oráculo baseado na especificação; verificação do usuário criado; limites exatos (7/8); exceções E1–E5; limpeza de dados. |
+
+**Veredito:** é o projeto que mais se aproxima da nossa jornada (cobre o fluxo com login e um caso negativo),
+mas a fragilidade dos locators e o oráculo desatualizado mostram o custo de testar sem uma especificação.
+
 > Em andamento: os demais projetos, o comparativo e as lições entram nos próximos commits.
 
 ## Fontes
