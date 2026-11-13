@@ -79,7 +79,34 @@ pedido) e não acrescenta classes de equivalência, limites nem exceções que n
 testes continua sendo responsabilidade do testador.** Isso vale também para este trabalho, que registra o uso
 de IA no diário.
 
-> Em andamento: os demais projetos, o comparativo e as lições entram nos próximos commits.
+## Comparativo
+
+| Critério | P1 pytest/Selenium | P2 TestNG/Selenium | P3 Playwright (IA) |
+|---|---|---|---|
+| Nível | Sistema | Sistema | Sistema |
+| Técnica | nenhuma | par válido/inválido de senha | nenhuma (data-driven só no login) |
+| Itens da jornada cobertos | FP | FP, A2, E6 | FP |
+| Isolamento | ruim (driver global, ordem) | médio (ordem, JSON compartilhado) | bom no navegador; dados fixos |
+| Oráculo | tautológico | parcial e desatualizado (7 vs. 8) | parcial (URL + texto) |
+| Locators | XPath absoluto | índice posicional | semânticos (role/placeholder) |
+| Esperas | implícita 10 s | `sleep` + `WebDriverWait` | auto-waiting |
+| Limpeza de dados | não | não | não |
+| CI | não | não | sim (GitHub Actions) |
+
+## O que levamos para os nossos testes
+
+1. **Oráculo derivado da especificação** (regras confirmadas no código e mensagens dos arquivos de
+   tradução), e não do comportamento observado uma vez. Evita o problema do "7 vs. 8" de P2.
+2. **Verificar efeitos, não só a navegação:** toast, nome exibido, usuário existente em *User Management* e,
+   na integração, o estado via API (o que também falta nos testes originais; ver `codigo-original.md`).
+3. **Testes independentes:** cada teste faz o próprio login (ou usa `storageState`), cria dados com sufixo
+   único e os exclui no `@AfterEach`.
+4. **Locators semânticos** como os do P3 (`getByRole`, `getByLabel`, `getByPlaceholder`) no Playwright for
+   Java, com Page Objects.
+5. **`baseURL` e credenciais configuráveis** por variável de ambiente, para rodar no Docker local ou no
+   servidor de demonstração.
+6. **Técnicas explícitas** (classes de equivalência, valor-limite e tabela de decisão), justamente o que
+   nenhum dos três projetos aplica de forma sistemática.
 
 ## Fontes
 
