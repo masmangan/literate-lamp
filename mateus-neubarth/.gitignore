@@ -1,0 +1,8 @@
+# Saídas do Maven (relatórios, traces do Playwright)
+target/
+# Log local da preparação do PHPUnit
+ambiente/preparar-phpunit.log
+# IDEs
+.idea/
+.vscode/
+*.iml
