@@ -81,6 +81,40 @@ Casos da seção `Create`: `without body`, `with only first name`, `with ess use
 | Oráculo | **Tautológico:** o mock do DAO devolve o próprio objeto recebido, e o teste confere `instanceof EmpPicture`. Passaria mesmo que o serviço não fizesse nada útil. |
 | Ponto positivo | `testPictureSizeAdjust` usa `@dataProvider` com imagens de vários tamanhos: aqui sim há particionamento. |
 
+### T4: `IDGeneratorServiceTest`
+
+| Critério | Avaliação |
+|---|---|
+| Nível | Unitário, com `IDGeneratorDao` mockado. Bom isolamento. |
+| Técnica | `@dataProvider` com 6 combinações de entidade × ID atual. |
+| Cobertura | Só testa `getNextID` com `$update = true` (o padrão). O formulário usa `getNextID(Employee::class, false)` (`SaveEmployeeController`), e esse ramo **não é testado**. |
+| Valor-limite | Ausente. Para `Employee` só aparecem 4→`0005` e 5→`0006`; faltam as transições de dígito (999→`1000`, 9999→`10000`), onde o `str_pad` muda de comportamento. |
+| Oráculo | `testIncrementId` só exige que `updateNextId` seja chamado **uma vez**, sem conferir o argumento. Se o código gravasse `currentId` em vez de `currentId + 1`, o teste continuaria passando. Bastaria `->with(Employee::class, 2)`. |
+
+### T5: `UserAPITest` (create)
+
+Casos: usuário ativo, desativado, funcionário com nome do meio, `empNumber` inexistente, username existente,
+papel não atribuível, username existente mas excluído, e OIDC ativo (senha vazia).
+
+| Critério | Avaliação |
+|---|---|
+| Nível | Integração (mesmo padrão de T1). |
+| Técnica | Particionamento bem feito para username (existente, existente-mas-excluído) e papel. Bons casos de borda de negócio. |
+| Cobertura | Cobre E4. **Não cobre** os limites de username (4/5/40/41) nem senhas inválidas: todos os casos usam senhas fortes (`Jacqueline@OHRM123`). |
+| Oráculo | Igual ao T1: resposta da API; não confere o hash gravado nem o vínculo no banco. |
+| Lacunas | O passo A2 da jornada nunca é testado **junto** com a criação do funcionário. A atomicidade (risco **R1**) fica sem teste em qualquer nível. |
+
+### T6 e T7: política de senha
+
+| Critério | T6 `PasswordStrengthServiceTest` | T7 `PasswordStrengthValidationAPITest` |
+|---|---|---|
+| Nível | Integração (fixtures + `ConfigService` real) | Integração |
+| Técnica | 2 entradas avulsas | 10 casos no YAML, organizados por classe: só minúsculas, sem maiúscula, < 8, > 64, vazia, nula, 8 sem número/especial, válida |
+| Oráculo | Confere só `$messages[0]`; se surgisse uma segunda mensagem indevida, o teste não perceberia. `assertEquals($messages[0], '…')` está com os argumentos invertidos (o esperado vem primeiro no PHPUnit), o que só piora a mensagem de falha. | Compara a lista completa de mensagens e a força: oráculo forte. |
+| Lacunas | – | Nenhum caso com **espaço** na senha (regra `is_spaces_allowed = false`); limites exatos 7/8 e 64/65 não aparecem como pares. |
+
+T7 é o conjunto mais bem projetado da jornada: aplica particionamento de forma explícita e tem oráculo completo.
+
 > Em andamento: as demais avaliações por arquivo e a síntese entram nos próximos commits.
 
 ## Fontes
