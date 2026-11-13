@@ -54,6 +54,31 @@ Os dois exercitam o fluxo A2 (com login).
 **Veredito:** é o projeto que mais se aproxima da nossa jornada (cobre o fluxo com login e um caso negativo),
 mas a fragilidade dos locators e o oráculo desatualizado mostram o custo de testar sem uma especificação.
 
+## P3: pavanoltraining/POC_Playwright_MCP_orangehrm (Playwright + TypeScript, gerado por IA)
+
+Arquivos: `tests/add-employee.spec.ts`, `pages/PimPage.ts`, `pages/LoginPage.ts`, `playwright.config.ts`,
+`prompts.md`, `.github/workflows/playwright.yml`.
+
+O projeto é uma prova de conceito do **Playwright MCP**: os testes foram gerados por um assistente de IA a
+partir de prompts em linguagem natural, que estão registrados em `prompts.md` ("Prompt 5: Add New Employee").
+
+| Critério | Avaliação |
+|---|---|
+| Nível | Sistema (UI). |
+| Técnica | Nenhuma: um caminho feliz com dados fixos (`John123 Doe456`). O projeto até usa teste orientado a dados (`orangehrm-login-data-driven.spec.ts` e a versão com CSV), mas só para login. |
+| Cobertura | Só o fluxo principal (FP). Nenhuma exceção, foto ou login. |
+| Isolamento | Melhor dos três quanto ao navegador: o Playwright cria um *contexto* novo por teste, e o login é feito dentro do próprio teste. Mas os dados são fixos e não há limpeza, então cada execução cria outro "John123 Doe456". **O ambiente é inconsistente:** `LoginPage.goto()` aponta para `https://awesomeqa.com/hr/...` com credenciais próprias (`admin` / `Awesomeqa@4321`, *hard-coded* no teste), enquanto as outras specs usam o servidor de demonstração oficial. A URL e a senha antigas estão comentadas no código. |
+| Oráculo | Médio: espera a URL `**/pim/viewPersonalDetails/**` e verifica que o texto `John123 Doe456` está visível. Como o nome é fixo e já existe de execuções anteriores, o oráculo não distingue o registro recém-criado de um antigo. O toast "Successfully Saved" não é verificado. |
+| Legibilidade | **Melhor dos três.** Usa locators semânticos e resilientes (`getByPlaceholder('First Name')`, `getByRole('button', { name: 'Save' })`), esperas automáticas (*auto-waiting*) e um Page Object pequeno e claro. O teste lê como a especificação do prompt. |
+| Infraestrutura | Tem CI no GitHub Actions (`npx playwright test`), *trace* no primeiro *retry* e relatório HTML: boas práticas de configuração. |
+| Lacunas | Exceções; dados únicos; ambiente configurável (`baseURL` e credenciais em variáveis de ambiente); verificação do toast e da persistência. |
+
+**Veredito:** tem a melhor *forma* (ferramenta, locators, configuração), mas o *conteúdo* é tão raso quanto o de
+P1. Ele mostra bem o limite da geração de testes por IA: o modelo reproduz fielmente o prompt (o caminho feliz
+pedido) e não acrescenta classes de equivalência, limites nem exceções que ninguém pediu. **O projeto de
+testes continua sendo responsabilidade do testador.** Isso vale também para este trabalho, que registra o uso
+de IA no diário.
+
 > Em andamento: os demais projetos, o comparativo e as lições entram nos próximos commits.
 
 ## Fontes
