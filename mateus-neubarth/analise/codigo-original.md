@@ -47,7 +47,41 @@ O oráculo fica em `src/test/phpunit/Util/EndpointIntegrationTestCase.php::asser
 **Consequência:** o oráculo olha **só a resposta** da API. Nenhum caso confere o estado do banco depois da
 operação: se a foto foi gravada, se o contador de ID avançou, se o evento de criação foi disparado.
 
-> Em andamento: as seções de avaliação por arquivo e a síntese entram nos próximos commits.
+## 3. Avaliação por arquivo
+
+### T1: `EmployeeAPITest` (create)
+
+Casos da seção `Create`: `without body`, `with only first name`, `with ess user id`,
+`with only first and last name`, `with all details`, `with all details and emp picture`.
+
+| Critério | Avaliação |
+|---|---|
+| Nível | **Integração**, apesar de rodar no PHPUnit: usa kernel real, banco de teste com fixtures (`EmployeeAPITest.yml`) e serviços reais (`EmployeeService`, `ConfigService`, `UserService`). |
+| Técnica | Particionamento simples: um caso por classe (sem corpo, sem sobrenome, usuário sem permissão, mínimo válido, completo, completo com foto). Não há análise de valor-limite. |
+| Cobertura | Cobre o fluxo principal, A1 (foto), A3 (ID manual), E1 (nome vazio) e E9 (sem permissão). **Não cobre** E2 (ID duplicado), E3 (foto inválida) nem E7 (tamanhos máximos). |
+| Isolamento | Bom: cada caso recarrega as fixtures (`populateFixtures`) e fixa a data com `registerMockDateTimeHelper`. Os casos não dependem uns dos outros. |
+| Oráculo | Fraco para efeitos colaterais. No caso com foto, o esperado é só o JSON do funcionário; não se verifica se a foto foi gravada em `hs_hr_emp_picture` nem se o contador `hs_hr_unique_id` avançou. É justamente onde está o risco **R2**. |
+| Legibilidade | Boa: os nomes dos casos dizem a intenção, e o YAML separa dados de código. Por outro lado, o `base64` da foto ocupa linhas enormes no YAML, e a lista de `services` se repete em todo caso. |
+| Lacunas | ID duplicado; limites 30/31 e 10/11; foto com tipo inválido; nome do arquivo com mais de 100 caracteres; estado do banco após criar com foto. |
+
+### T2: `EmployeeServiceTest`
+
+| Critério | Avaliação |
+|---|---|
+| Nível | Unitário/integração (mistura mocks de DAO com chamadas reais). |
+| Cobertura | 8 métodos de teste, nenhum sobre a jornada. **`saveNewEmployee()` e `dispatchAddEmployeeEvent()` não têm teste** em nenhum lugar do repositório (busca por esses nomes em `src/plugins/*/test` não retorna nada). |
+| Lacunas | O método que incrementa o contador de ID e salva o funcionário não é testado diretamente. |
+
+### T3: `EmployeePictureServiceTest::testSaveEmployeePicture`
+
+| Critério | Avaliação |
+|---|---|
+| Nível | Unitário, com o DAO mockado. |
+| Técnica | Nenhuma técnica de projeto; é um teste de "passa direto" (*pass-through*). |
+| Oráculo | **Tautológico:** o mock do DAO devolve o próprio objeto recebido, e o teste confere `instanceof EmpPicture`. Passaria mesmo que o serviço não fizesse nada útil. |
+| Ponto positivo | `testPictureSizeAdjust` usa `@dataProvider` com imagens de vários tamanhos: aqui sim há particionamento. |
+
+> Em andamento: as demais avaliações por arquivo e a síntese entram nos próximos commits.
 
 ## Fontes
 
