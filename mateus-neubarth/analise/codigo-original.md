@@ -32,6 +32,21 @@ Arquivos analisados:
 
 (Os caminhos começam em `src/plugins/`, exceto T8.)
 
+## 2. Como funciona o oráculo dos testes de API
+
+Os testes de endpoint (T1, T5, T7) seguem um padrão **orientado a dados**: o método PHP é genérico, e cada
+caso é uma entrada no YAML com `body`, usuário logado (`userId`) e o resultado esperado. O resultado pode ser
+`data` (resposta), `invalidOnly` (quais parâmetros devem falhar) ou `exception`.
+
+O oráculo fica em `src/test/phpunit/Util/EndpointIntegrationTestCase.php::assertValidTestCase`:
+
+1. Se o caso é inválido, confere que a validação falha **exatamente** nos parâmetros listados.
+2. Senão, executa a operação e compara `$result->normalize()` com o `data` esperado (`assertEquals`).
+3. Compara `meta`, se houver, e confere que os serviços declarados foram inicializados.
+
+**Consequência:** o oráculo olha **só a resposta** da API. Nenhum caso confere o estado do banco depois da
+operação: se a foto foi gravada, se o contador de ID avançou, se o evento de criação foi disparado.
+
 > Em andamento: as seções de avaliação por arquivo e a síntese entram nos próximos commits.
 
 ## Fontes
