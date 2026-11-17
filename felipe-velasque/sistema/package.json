@@ -1,0 +1,16 @@
+{
+  "name": "orangehrm-t2-pim-dependents",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Testes de sistema e integração API da jornada PIM Dependents — PUCRS T2",
+  "scripts": {
+    "test": "playwright test",
+    "test:system": "playwright test 01-jornada-dependentes.spec.js",
+    "test:api": "playwright test 02-api-contrato.spec.js",
+    "test:list": "playwright test --list",
+    "report": "playwright show-report"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.56.1"
+  }
+}

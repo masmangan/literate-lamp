@@ -1,0 +1,187 @@
+<testsuites id="" name="" tests="10" failures="4" skipped="0" errors="0" time="318.832743">
+<testsuite name="01-jornada-dependentes.spec.js" timestamp="2026-11-17T18:23:24.835Z" hostname="chromium" tests="7" failures="4" skipped="0" time="248.983" errors="0">
+<testcase name="T2 / PIM — Dependents: sistema › ST-01: cadastra Child e persiste após recarregar" classname="01-jornada-dependentes.spec.js" time="60.317">
+<failure message="01-jornada-dependentes.spec.js:42:3 ST-01: cadastra Child e persiste após recarregar" type="FAILURE">
+<![CDATA[  [chromium] › 01-jornada-dependentes.spec.js:42:3 › T2 / PIM — Dependents: sistema › ST-01: cadastra Child e persiste após recarregar 
+
+    Test timeout of 60000ms exceeded.
+
+    Error: locator.click: Test timeout of 60000ms exceeded.
+    Call log:
+      - waiting for locator('.orangehrm-action-header').filter({ hasText: 'Assigned Dependents' }).getByRole('button', { name: 'Add', exact: true })
+
+
+      17 | }
+      18 | async function clickAdd(page) {
+    > 19 |   await dependentsHeader(page).getByRole('button', {name: 'Add', exact: true}).click();
+         |                                                                                ^
+      20 |   await expect(page.getByText('Add Dependent', {exact: true})).toBeVisible();
+      21 | }
+      22 | async function selectRelationship(page, type) {
+        at clickAdd (/Users/felipe/Documents/literate-lamp/felipe-velasque/sistema/tests/01-jornada-dependentes.spec.js:19:80)
+        at /Users/felipe/Documents/literate-lamp/felipe-velasque/sistema/tests/01-jornada-dependentes.spec.js:43:11
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/01-jornada-dependentes-T2--b6c0f--e-persiste-após-recarregar-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/01-jornada-dependentes-T2--b6c0f--e-persiste-após-recarregar-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../test-results/01-jornada-dependentes-T2--b6c0f--e-persiste-após-recarregar-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace ../test-results/01-jornada-dependentes-T2--b6c0f--e-persiste-após-recarregar-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-err>
+<![CDATA[
+Warning: attachment ../sistema/test-results/01-jornada-dependentes-T2--b6c0f--e-persiste-após-recarregar-chromium/test-failed-1.png is missing
+Warning: attachment ../sistema/test-results/01-jornada-dependentes-T2--b6c0f--e-persiste-após-recarregar-chromium/error-context.md is missing
+Warning: attachment ../sistema/test-results/01-jornada-dependentes-T2--b6c0f--e-persiste-após-recarregar-chromium/trace.zip is missing]]>
+</system-err>
+</testcase>
+<testcase name="T2 / PIM — Dependents: sistema › ST-02: Relationship Other torna Please Specify obrigatório" classname="01-jornada-dependentes.spec.js" time="60.313">
+<failure message="01-jornada-dependentes.spec.js:54:3 ST-02: Relationship Other torna Please Specify obrigatório" type="FAILURE">
+<![CDATA[  [chromium] › 01-jornada-dependentes.spec.js:54:3 › T2 / PIM — Dependents: sistema › ST-02: Relationship Other torna Please Specify obrigatório 
+
+    Test timeout of 60000ms exceeded.
+
+    Error: locator.click: Test timeout of 60000ms exceeded.
+    Call log:
+      - waiting for locator('.orangehrm-action-header').filter({ hasText: 'Assigned Dependents' }).getByRole('button', { name: 'Add', exact: true })
+
+
+      17 | }
+      18 | async function clickAdd(page) {
+    > 19 |   await dependentsHeader(page).getByRole('button', {name: 'Add', exact: true}).click();
+         |                                                                                ^
+      20 |   await expect(page.getByText('Add Dependent', {exact: true})).toBeVisible();
+      21 | }
+      22 | async function selectRelationship(page, type) {
+        at clickAdd (/Users/felipe/Documents/literate-lamp/felipe-velasque/sistema/tests/01-jornada-dependentes.spec.js:19:80)
+        at /Users/felipe/Documents/literate-lamp/felipe-velasque/sistema/tests/01-jornada-dependentes.spec.js:55:11
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/01-jornada-dependentes-T2--5f3f1--Please-Specify-obrigatório-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/01-jornada-dependentes-T2--5f3f1--Please-Specify-obrigatório-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../test-results/01-jornada-dependentes-T2--5f3f1--Please-Specify-obrigatório-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace ../test-results/01-jornada-dependentes-T2--5f3f1--Please-Specify-obrigatório-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-err>
+<![CDATA[
+Warning: attachment ../sistema/test-results/01-jornada-dependentes-T2--5f3f1--Please-Specify-obrigatório-chromium/test-failed-1.png is missing
+Warning: attachment ../sistema/test-results/01-jornada-dependentes-T2--5f3f1--Please-Specify-obrigatório-chromium/error-context.md is missing
+Warning: attachment ../sistema/test-results/01-jornada-dependentes-T2--5f3f1--Please-Specify-obrigatório-chromium/trace.zip is missing]]>
+</system-err>
+</testcase>
+<testcase name="T2 / PIM — Dependents: sistema › ST-03: nome obrigatório — não cria registro vazio" classname="01-jornada-dependentes.spec.js" time="60.522">
+<failure message="01-jornada-dependentes.spec.js:70:3 ST-03: nome obrigatório — não cria registro vazio" type="FAILURE">
+<![CDATA[  [chromium] › 01-jornada-dependentes.spec.js:70:3 › T2 / PIM — Dependents: sistema › ST-03: nome obrigatório — não cria registro vazio 
+
+    Test timeout of 60000ms exceeded.
+
+    Error: locator.click: Test timeout of 60000ms exceeded.
+    Call log:
+      - waiting for locator('.orangehrm-action-header').filter({ hasText: 'Assigned Dependents' }).getByRole('button', { name: 'Add', exact: true })
+
+
+      17 | }
+      18 | async function clickAdd(page) {
+    > 19 |   await dependentsHeader(page).getByRole('button', {name: 'Add', exact: true}).click();
+         |                                                                                ^
+      20 |   await expect(page.getByText('Add Dependent', {exact: true})).toBeVisible();
+      21 | }
+      22 | async function selectRelationship(page, type) {
+        at clickAdd (/Users/felipe/Documents/literate-lamp/felipe-velasque/sistema/tests/01-jornada-dependentes.spec.js:19:80)
+        at /Users/felipe/Documents/literate-lamp/felipe-velasque/sistema/tests/01-jornada-dependentes.spec.js:71:11
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/01-jornada-dependentes-T2--b8229-o-—-não-cria-registro-vazio-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/01-jornada-dependentes-T2--b8229-o-—-não-cria-registro-vazio-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../test-results/01-jornada-dependentes-T2--b8229-o-—-não-cria-registro-vazio-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace ../test-results/01-jornada-dependentes-T2--b8229-o-—-não-cria-registro-vazio-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-err>
+<![CDATA[
+Warning: attachment ../sistema/test-results/01-jornada-dependentes-T2--b8229-o-—-não-cria-registro-vazio-chromium/test-failed-1.png is missing
+Warning: attachment ../sistema/test-results/01-jornada-dependentes-T2--b8229-o-—-não-cria-registro-vazio-chromium/error-context.md is missing
+Warning: attachment ../sistema/test-results/01-jornada-dependentes-T2--b8229-o-—-não-cria-registro-vazio-chromium/trace.zip is missing]]>
+</system-err>
+</testcase>
+<testcase name="T2 / PIM — Dependents: sistema › ST-04: cancelar cadastro não persiste dados" classname="01-jornada-dependentes.spec.js" time="60.16">
+<failure message="01-jornada-dependentes.spec.js:78:3 ST-04: cancelar cadastro não persiste dados" type="FAILURE">
+<![CDATA[  [chromium] › 01-jornada-dependentes.spec.js:78:3 › T2 / PIM — Dependents: sistema › ST-04: cancelar cadastro não persiste dados 
+
+    Test timeout of 60000ms exceeded.
+
+    Error: apiRequestContext._wrapApiCall: ENOENT: no such file or directory, open '/Users/felipe/Documents/literate-lamp/felipe-velasque/sistema/test-results/.playwright-artifacts-3/traces/30b5c7ed817351871a53-5ee8fef7950c208d2184.trace'
+
+    Error: locator.click: Test ended.
+    Call log:
+      - waiting for locator('.orangehrm-action-header').filter({ hasText: 'Assigned Dependents' }).getByRole('button', { name: 'Add', exact: true })
+
+
+      17 | }
+      18 | async function clickAdd(page) {
+    > 19 |   // O nome acessível do botão inclui o glifo do ícone (" Add"); exact:true nunca casa.
+         |                                                                                ^
+      20 |   await dependentsHeader(page).getByRole('button', {name: /\bAdd$/}).click();
+      21 |   await expect(page.getByText('Add Dependent', {exact: true})).toBeVisible();
+      22 | }
+        at clickAdd (/Users/felipe/Documents/literate-lamp/felipe-velasque/sistema/tests/01-jornada-dependentes.spec.js:19:80)
+        at /Users/felipe/Documents/literate-lamp/felipe-velasque/sistema/tests/01-jornada-dependentes.spec.js:79:11
+
+    Error: ENOENT: no such file or directory, open '/Users/felipe/Documents/literate-lamp/felipe-velasque/sistema/test-results/.playwright-artifacts-3/f5312869bf8f983ff9e64a1622f10a54.zip'
+
+    Test timeout of 60000ms exceeded.
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/01-jornada-dependentes-T2--68934-cadastro-não-persiste-dados-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/01-jornada-dependentes-T2--68934-cadastro-não-persiste-dados-chromium/error-context.md
+]]>
+</failure>
+<system-err>
+<![CDATA[
+Warning: attachment ../sistema/test-results/01-jornada-dependentes-T2--68934-cadastro-não-persiste-dados-chromium/test-failed-1.png is missing
+Warning: attachment ../sistema/test-results/01-jornada-dependentes-T2--68934-cadastro-não-persiste-dados-chromium/error-context.md is missing]]>
+</system-err>
+</testcase>
+<testcase name="T2 / PIM — Dependents: sistema › ST-05: editar atualiza registro sem duplicar" classname="01-jornada-dependentes.spec.js" time="3.341">
+</testcase>
+<testcase name="T2 / PIM — Dependents: sistema › ST-06: cancelar exclusão preserva; confirmar exclusão remove" classname="01-jornada-dependentes.spec.js" time="2.253">
+</testcase>
+<testcase name="T2 / PIM — Dependents: sistema › ST-07: 101 caracteres no nome são rejeitados" classname="01-jornada-dependentes.spec.js" time="2.077">
+</testcase>
+</testsuite>
+<testsuite name="02-api-contrato.spec.js" timestamp="2026-11-17T18:23:24.835Z" hostname="chromium" tests="3" failures="0" skipped="0" time="4.566" errors="0">
+<testcase name="T2 / Dependents — integração REST › IT-API-01: cria, consulta e edita dependente pelo REST" classname="02-api-contrato.spec.js" time="1.587">
+</testcase>
+<testcase name="T2 / Dependents — integração REST › IT-API-02: boundary 100 caracteres aceito e 101 rejeitado" classname="02-api-contrato.spec.js" time="1.504">
+</testcase>
+<testcase name="T2 / Dependents — integração REST › IT-API-03: tipo inválido não persiste dependente" classname="02-api-contrato.spec.js" time="1.475">
+</testcase>
+</testsuite>
+</testsuites>

@@ -1,0 +1,5 @@
+.DS_Store
+sistema/node_modules/
+sistema/test-results/
+sistema/playwright-report/
+*.log

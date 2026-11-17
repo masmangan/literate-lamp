@@ -1,0 +1,64 @@
+PHPUnit 9.6.16 by Sebastian Bergmann and contributors.
+
+R
+Deprecated: Creation of dynamic property OrangeHRM\Tests\Pim\Dao\EmployeeDependentDaoTest::$fixture is deprecated in /app/src/plugins/orangehrmPimPlugin/test/Dao/EmployeeDependentDaoTest.php on line 46
+R
+Deprecated: Creation of dynamic property OrangeHRM\Tests\Pim\Dao\EmployeeDependentDaoTest::$fixture is deprecated in /app/src/plugins/orangehrmPimPlugin/test/Dao/EmployeeDependentDaoTest.php on line 46
+R
+Deprecated: Creation of dynamic property OrangeHRM\Tests\Pim\Dao\EmployeeDependentDaoTest::$fixture is deprecated in /app/src/plugins/orangehrmPimPlugin/test/Dao/EmployeeDependentDaoTest.php on line 46
+R
+Deprecated: Creation of dynamic property OrangeHRM\Tests\Pim\Dao\EmployeeDependentDaoTest::$fixture is deprecated in /app/src/plugins/orangehrmPimPlugin/test/Dao/EmployeeDependentDaoTest.php on line 46
+R
+Deprecated: Creation of dynamic property OrangeHRM\Tests\Pim\Dao\EmployeeDependentDaoTest::$fixture is deprecated in /app/src/plugins/orangehrmPimPlugin/test/Dao/EmployeeDependentDaoTest.php on line 46
+R
+Deprecated: Creation of dynamic property OrangeHRM\Tests\Pim\Dao\EmployeeDependentDaoTest::$fixture is deprecated in /app/src/plugins/orangehrmPimPlugin/test/Dao/EmployeeDependentDaoTest.php on line 46
+R
+Deprecated: Creation of dynamic property OrangeHRM\Tests\Pim\Dao\EmployeeDependentDaoTest::$fixture is deprecated in /app/src/plugins/orangehrmPimPlugin/test/Dao/EmployeeDependentDaoTest.php on line 46
+R
+Deprecated: Creation of dynamic property OrangeHRM\Tests\Pim\Dao\EmployeeDependentDaoTest::$fixture is deprecated in /app/src/plugins/orangehrmPimPlugin/test/Dao/EmployeeDependentDaoTest.php on line 46
+R                                                           9 / 9 (100%)
+Deprecated: Creation of dynamic property OrangeHRM\Tests\Pim\Dao\EmployeeDependentDaoTest::$fixture is deprecated in /app/src/plugins/orangehrmPimPlugin/test/Dao/EmployeeDependentDaoTest.php on line 46
+
+
+Time: 00:00.200, Memory: 14.00 MB
+
+There were 9 risky tests:
+
+1) OrangeHRM\Tests\Pim\Dao\EmployeeDependentDaoTest::testSaveEmployeeDependent
+This test printed output: 
+Deprecated: Creation of dynamic property OrangeHRM\Tests\Pim\Dao\EmployeeDependentDaoTest::$fixture is deprecated in /app/src/plugins/orangehrmPimPlugin/test/Dao/EmployeeDependentDaoTest.php on line 46
+
+2) OrangeHRM\Tests\Pim\Dao\EmployeeDependentDaoTest::testSaveEmployeeDependentWithSeqNo
+This test printed output: 
+Deprecated: Creation of dynamic property OrangeHRM\Tests\Pim\Dao\EmployeeDependentDaoTest::$fixture is deprecated in /app/src/plugins/orangehrmPimPlugin/test/Dao/EmployeeDependentDaoTest.php on line 46
+
+3) OrangeHRM\Tests\Pim\Dao\EmployeeDependentDaoTest::testSaveEmployeeDependentWithInvalidSeqNo
+This test printed output: 
+Deprecated: Creation of dynamic property OrangeHRM\Tests\Pim\Dao\EmployeeDependentDaoTest::$fixture is deprecated in /app/src/plugins/orangehrmPimPlugin/test/Dao/EmployeeDependentDaoTest.php on line 46
+
+4) OrangeHRM\Tests\Pim\Dao\EmployeeDependentDaoTest::testGetEmployeeDependents
+This test printed output: 
+Deprecated: Creation of dynamic property OrangeHRM\Tests\Pim\Dao\EmployeeDependentDaoTest::$fixture is deprecated in /app/src/plugins/orangehrmPimPlugin/test/Dao/EmployeeDependentDaoTest.php on line 46
+
+5) OrangeHRM\Tests\Pim\Dao\EmployeeDependentDaoTest::testGetEmployeeDependent
+This test printed output: 
+Deprecated: Creation of dynamic property OrangeHRM\Tests\Pim\Dao\EmployeeDependentDaoTest::$fixture is deprecated in /app/src/plugins/orangehrmPimPlugin/test/Dao/EmployeeDependentDaoTest.php on line 46
+
+6) OrangeHRM\Tests\Pim\Dao\EmployeeDependentDaoTest::testDeleteEmployeeDependents
+This test printed output: 
+Deprecated: Creation of dynamic property OrangeHRM\Tests\Pim\Dao\EmployeeDependentDaoTest::$fixture is deprecated in /app/src/plugins/orangehrmPimPlugin/test/Dao/EmployeeDependentDaoTest.php on line 46
+
+7) OrangeHRM\Tests\Pim\Dao\EmployeeDependentDaoTest::testSearchEmployeeDependent
+This test printed output: 
+Deprecated: Creation of dynamic property OrangeHRM\Tests\Pim\Dao\EmployeeDependentDaoTest::$fixture is deprecated in /app/src/plugins/orangehrmPimPlugin/test/Dao/EmployeeDependentDaoTest.php on line 46
+
+8) OrangeHRM\Tests\Pim\Dao\EmployeeDependentDaoTest::testSearchEmployeeDependentWithLimit
+This test printed output: 
+Deprecated: Creation of dynamic property OrangeHRM\Tests\Pim\Dao\EmployeeDependentDaoTest::$fixture is deprecated in /app/src/plugins/orangehrmPimPlugin/test/Dao/EmployeeDependentDaoTest.php on line 46
+
+9) OrangeHRM\Tests\Pim\Dao\EmployeeDependentDaoTest::testGetSearchEmployeeDependentCount
+This test printed output: 
+Deprecated: Creation of dynamic property OrangeHRM\Tests\Pim\Dao\EmployeeDependentDaoTest::$fixture is deprecated in /app/src/plugins/orangehrmPimPlugin/test/Dao/EmployeeDependentDaoTest.php on line 46
+
+OK, but incomplete, skipped, or risky tests!
+Tests: 9, Assertions: 28, Risky: 9.

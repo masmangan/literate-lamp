@@ -1,0 +1,20 @@
+
+Running 10 tests using 1 worker
+
+  ✓   1 [chromium] › tests/01-jornada-dependentes.spec.js:43:3 › T2 / PIM — Dependents: sistema › ST-01: cadastra Child e persiste após recarregar (4.2s)
+  ✓   2 [chromium] › tests/01-jornada-dependentes.spec.js:55:3 › T2 / PIM — Dependents: sistema › ST-02: Relationship Other torna Please Specify obrigatório (2.1s)
+  ✓   3 [chromium] › tests/01-jornada-dependentes.spec.js:71:3 › T2 / PIM — Dependents: sistema › ST-03: nome obrigatório — não cria registro vazio (1.7s)
+  ✓   4 [chromium] › tests/01-jornada-dependentes.spec.js:79:3 › T2 / PIM — Dependents: sistema › ST-04: cancelar cadastro não persiste dados (1.5s)
+  ✓   5 [chromium] › tests/01-jornada-dependentes.spec.js:88:3 › T2 / PIM — Dependents: sistema › ST-05: editar atualiza registro sem duplicar (2.4s)
+  ✓   6 [chromium] › tests/01-jornada-dependentes.spec.js:105:3 › T2 / PIM — Dependents: sistema › ST-06: cancelar exclusão preserva; confirmar exclusão remove (2.0s)
+  ✓   7 [chromium] › tests/01-jornada-dependentes.spec.js:120:3 › T2 / PIM — Dependents: sistema › ST-07: 101 caracteres no nome são rejeitados (1.5s)
+  ✓   8 [chromium] › tests/02-api-contrato.spec.js:19:3 › T2 / Dependents — integração REST › IT-API-01: cria, consulta e edita dependente pelo REST (1.1s)
+  ✓   9 [chromium] › tests/02-api-contrato.spec.js:39:3 › T2 / Dependents — integração REST › IT-API-02: boundary 100 caracteres aceito e 101 rejeitado (1.3s)
+  ✓  10 [chromium] › tests/02-api-contrato.spec.js:52:3 › T2 / Dependents — integração REST › IT-API-03: tipo inválido não persiste dependente (1.4s)
+
+  10 passed (20.5s)
+
+To open last HTML report run:
+
+  npx playwright show-report
+

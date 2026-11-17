@@ -1,0 +1,15 @@
+PHPUnit 9.6.16 by Sebastian Bergmann and contributors.
+
+Employee Dependent Persistence Integration (OrangeHRM\Tests\Pim\T2Dependents\EmployeeDependentPersistenceIntegration)
+ ✔ Auto sequence is independent for each employee
+ ✔ Delete cannot remove another employees same sequence
+ ✔ Deleting one selected id preserves other rows
+ ✔ Existing ids are filtered by employee
+ ✔ Search and count respect filters and employee
+ ✔ Updating existing dependent does not duplicate row
+ ✔ Sequence ninety nine is accepted but next automatic sequence is rejected
+ ✔ Deleting unknown id returns zero and does not affect other employees
+
+Time: 00:00.215, Memory: 14.00 MB
+
+OK (8 tests, 30 assertions)

@@ -1,0 +1,26 @@
+<testsuites id="" name="" tests="10" failures="0" skipped="0" errors="0" time="20.474277">
+<testsuite name="01-jornada-dependentes.spec.js" timestamp="2026-11-17T18:32:55.024Z" hostname="chromium" tests="7" failures="0" skipped="0" time="15.524" errors="0">
+<testcase name="T2 / PIM — Dependents: sistema › ST-01: cadastra Child e persiste após recarregar" classname="01-jornada-dependentes.spec.js" time="4.249">
+</testcase>
+<testcase name="T2 / PIM — Dependents: sistema › ST-02: Relationship Other torna Please Specify obrigatório" classname="01-jornada-dependentes.spec.js" time="2.121">
+</testcase>
+<testcase name="T2 / PIM — Dependents: sistema › ST-03: nome obrigatório — não cria registro vazio" classname="01-jornada-dependentes.spec.js" time="1.711">
+</testcase>
+<testcase name="T2 / PIM — Dependents: sistema › ST-04: cancelar cadastro não persiste dados" classname="01-jornada-dependentes.spec.js" time="1.545">
+</testcase>
+<testcase name="T2 / PIM — Dependents: sistema › ST-05: editar atualiza registro sem duplicar" classname="01-jornada-dependentes.spec.js" time="2.412">
+</testcase>
+<testcase name="T2 / PIM — Dependents: sistema › ST-06: cancelar exclusão preserva; confirmar exclusão remove" classname="01-jornada-dependentes.spec.js" time="2.01">
+</testcase>
+<testcase name="T2 / PIM — Dependents: sistema › ST-07: 101 caracteres no nome são rejeitados" classname="01-jornada-dependentes.spec.js" time="1.476">
+</testcase>
+</testsuite>
+<testsuite name="02-api-contrato.spec.js" timestamp="2026-11-17T18:32:55.024Z" hostname="chromium" tests="3" failures="0" skipped="0" time="3.82" errors="0">
+<testcase name="T2 / Dependents — integração REST › IT-API-01: cria, consulta e edita dependente pelo REST" classname="02-api-contrato.spec.js" time="1.136">
+</testcase>
+<testcase name="T2 / Dependents — integração REST › IT-API-02: boundary 100 caracteres aceito e 101 rejeitado" classname="02-api-contrato.spec.js" time="1.315">
+</testcase>
+<testcase name="T2 / Dependents — integração REST › IT-API-03: tipo inválido não persiste dependente" classname="02-api-contrato.spec.js" time="1.369">
+</testcase>
+</testsuite>
+</testsuites>

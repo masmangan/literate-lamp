@@ -1,0 +1,16 @@
+PHPUnit 9.6.16 by Sebastian Bergmann and contributors.
+
+Emp Dependent And Service Unit (OrangeHRM\Tests\Pim\T2Dependents\EmpDependentAndServiceUnit)
+ ✔ Accepts known relationship types with data set #0
+ ✔ Accepts known relationship types with data set #1
+ ✔ Rejects unknown relationship types with data set #0
+ ✔ Rejects unknown relationship types with data set #1
+ ✔ Rejects unknown relationship types with data set #2
+ ✔ Date of birth may be null or date
+ ✔ Service delegates save to dao once
+ ✔ Service delegates deletion with employee and ids
+ ✔ Service wraps dao search exception
+
+Time: 00:00.054, Memory: 12.00 MB
+
+OK (9 tests, 13 assertions)
