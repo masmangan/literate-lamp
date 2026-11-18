@@ -1,0 +1,13 @@
+# Mutação manual (análise de sensibilidade dos testes) — 2026-11-17 21:18
+Cada mutante foi aplicado no clone do SUT, a suíte JornadaUsuarios (sem o grupo defeito) foi executada e o código restaurado.
+
+## M0 código original
+OK (85 tests, 131 assertions)
+## M1 USERNAME_MIN_LENGTH 5 -> 4
+Tests: 85, Assertions: 131, Failures: 1.
+## M2 checkMinPasswordLength: < -> <=
+Tests: 85, Assertions: 131, Failures: 34.
+## M3 remove a supressão da mensagem de força quando há outras
+Tests: 85, Assertions: 131, Failures: 2.
+## M4 getUndeletableUserIds não bloqueia o usuário logado
+Tests: 85, Assertions: 127, Failures: 3.

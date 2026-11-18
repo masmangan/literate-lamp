@@ -1,0 +1,33 @@
+# Fixture da jornada "conceder, ajustar e revogar acesso" (testes de integração PHPUnit).
+# Senhas das contas: hash bcrypt de "Senha@Forte2026x" (gerado com OrangeHRM\Core\Utility\PasswordHash).
+Config:
+  - { name: 'authorize_user_role_manager_class', value: 'BasicUserRoleManager' }
+  - { name: 'auth.password_policy.min_password_length', value: '8' }
+  - { name: 'auth.password_policy.min_uppercase_letters', value: '1' }
+  - { name: 'auth.password_policy.min_lowercase_letters', value: '1' }
+  - { name: 'auth.password_policy.min_numbers_in_password', value: '1' }
+  - { name: 'auth.password_policy.min_special_characters', value: '1' }
+  - { name: 'auth.password_policy.default_required_password_strength', value: 'strong' }
+  - { name: 'auth.password_policy.is_spaces_allowed', value: 'false' }
+
+Employee:
+  - { emp_number: 1, employee_id: '0001', emp_firstname: 'Carla', emp_lastname: 'Admin', emp_middle_name: '' }
+  - { emp_number: 2, employee_id: '0002', emp_firstname: 'Joana', emp_lastname: 'Teste', emp_middle_name: '' }
+  - { emp_number: 3, employee_id: '0003', emp_firstname: 'Pedro', emp_lastname: 'Souza', emp_middle_name: '' }
+  - { emp_number: 4, employee_id: '0004', emp_firstname: 'Rita', emp_lastname: 'Lima', emp_middle_name: '' }
+
+UserRole:
+  - { id: 1, name: Admin, display_name: Admin, is_assignable: 1, is_predefined: 1 }
+  - { id: 2, name: ESS, display_name: ESS, is_assignable: 1, is_predefined: 1 }
+  - { id: 3, name: Supervisor, display_name: Supervisor, is_assignable: 0, is_predefined: 1 }
+
+User:
+  # 1 = Carla, administradora logada nos testes
+  - { id: 1, user_role_id: 1, emp_number: 1, user_name: 'carla.admin', user_password: '$2y$12$a03s.SP.bVCWZyJeASn1f.f9Ar66104xLi4r8Z7FCd8X5gp21K3S6', deleted: 0, status: 1, date_entered: '2026-11-01 09:00:00', created_by: 1 }
+  # 2 = Pedro, ESS ativo
+  - { id: 2, user_role_id: 2, emp_number: 3, user_name: 'pedro.souza', user_password: '$2y$12$a03s.SP.bVCWZyJeASn1f.f9Ar66104xLi4r8Z7FCd8X5gp21K3S6', deleted: 0, status: 1, date_entered: '2026-11-01 09:00:00', created_by: 1 }
+  # 3 = conta excluída (logicamente) de Rita
+  - { id: 3, user_role_id: 2, emp_number: 4, user_name: 'antiga.conta', user_password: '$2y$12$a03s.SP.bVCWZyJeASn1f.f9Ar66104xLi4r8Z7FCd8X5gp21K3S6', deleted: 1, status: 1, date_entered: '2026-01-01 09:00:00', created_by: 1 }
+
+OpenIdProvider:
+  0: { id: 1, provider_name: 'Google', provider_url: 'https://accounts.google.com', status: 0 }
