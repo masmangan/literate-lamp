@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<testsuites>
+	<testsuite name="Conceder acesso" time="1.867307" disabled="0" errors="0" tests="5" failures="0" skipped="0" hostname="Gabriels-MacBook-Pro-2.local">
+		<testcase name="A01 criar usuário ESS devolve o contrato completo" time="0.396166" classname="test"/>
+		<testcase name="A02 busca por nome, papel e status encontra só o usuário criado" time="0.097149" classname="test"/>
+		<testcase name="A03 nome repetido é recusado e a validação assíncrona concorda" time="0.151528" classname="test"/>
+		<testcase name="A04 papel Supervisor (não atribuível) é recusado" time="0.060840" classname="test"/>
+		<testcase name="A05 usuário ESS não acessa a gestão de usuários" time="0.498099" classname="test"/>
+	</testsuite>
+	<testsuite name="Ajustar e revogar acesso" time="1.686880" disabled="0" errors="0" tests="4" failures="0" skipped="0" hostname="Gabriels-MacBook-Pro-2.local">
+		<testcase name="A06 conta desativada não consegue entrar" time="0.567731" classname="test"/>
+		<testcase name="A07 desativar encerra uma sessão já aberta" time="0.570125" classname="test"/>
+		<testcase name="A08 excluir remove a conta (GET passa a 404)" time="0.077788" classname="test"/>
+		<testcase name="A09 administrador não pode excluir a si mesmo" time="0.074915" classname="test"/>
+	</testsuite>
+	<testsuite name="Espaços no nome de usuário (CA6)" time="0.875983" disabled="0" errors="0" tests="2" failures="2" skipped="0" hostname="Gabriels-MacBook-Pro-2.local">
+		<testcase name="A10 nome com espaços nas pontas é recusado ou normalizado" time="0.411176" classname="test" failure="esperado 422 ou nome sem espaços; obtido 200 com userName=&amp;quot;  esp.drf7j225  &amp;quot;">
+			<failure type="testCodeFailure" message="esperado 422 ou nome sem espaços; obtido 200 com userName=&amp;quot;  esp.drf7j225  &amp;quot;">
+Error [ERR_TEST_FAILURE]: esperado 422 ou nome sem espaços; obtido 200 com userName="  esp.drf7j225  "
+    at async Promise.all (index 0) {
+  code: 'ERR_TEST_FAILURE',
+  failureType: 'testCodeFailure',
+  cause: AssertionError [ERR_ASSERTION]: esperado 422 ou nome sem espaços; obtido 200 com userName="  esp.drf7j225  "
+      at TestContext.&lt;anonymous> (file:///Users/gabrielcaamargo/Documents/pucrs/t2-vereval/literate-lamp/gabriel-camargo/testes/api/usuarios.test.js:143:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async Test.run (node:internal/test_runner/test:1054:7)
+      at async Promise.all (index 0)
+      at async Suite.run (node:internal/test_runner/test:1442:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:744:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '=='
+  }
+}
+			</failure>
+		</testcase>
+		<testcase name="A11 não podem existir dois nomes visualmente iguais" time="0.464056" classname="test" failure="existem 2 usuários exibidos como &amp;quot;esp.drf7j225&amp;quot;: &amp;quot;  esp.drf7j225  &amp;quot;, &amp;quot;esp.drf7j225&amp;quot;">
+			<failure type="testCodeFailure" message="existem 2 usuários exibidos como &amp;quot;esp.drf7j225&amp;quot;: &amp;quot;  esp.drf7j225  &amp;quot;, &amp;quot;esp.drf7j225&amp;quot;">
+[Error [ERR_TEST_FAILURE]: existem 2 usuários exibidos como "esp.drf7j225": "  esp.drf7j225  ", "esp.drf7j225"] {
+  code: 'ERR_TEST_FAILURE',
+  failureType: 'testCodeFailure',
+  cause: AssertionError [ERR_ASSERTION]: existem 2 usuários exibidos como "esp.drf7j225": "  esp.drf7j225  ", "esp.drf7j225"
+      at TestContext.&lt;anonymous> (file:///Users/gabrielcaamargo/Documents/pucrs/t2-vereval/literate-lamp/gabriel-camargo/testes/api/usuarios.test.js:154:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async Test.run (node:internal/test_runner/test:1054:7)
+      at async Suite.processPendingSubtests (node:internal/test_runner/test:744:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '=='
+  }
+}
+			</failure>
+		</testcase>
+	</testsuite>
+	<!-- tests 11 -->
+	<!-- suites 3 -->
+	<!-- pass 9 -->
+	<!-- fail 2 -->
+	<!-- cancelled 0 -->
+	<!-- skipped 0 -->
+	<!-- todo 0 -->
+	<!-- duration_ms 4611.112125 -->
+</testsuites>

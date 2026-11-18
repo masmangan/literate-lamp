@@ -1,0 +1,80 @@
+PHPUnit 9.6.16 by Sebastian Bergmann and contributors.
+
+Politica De Senha (OrangeHRM\Tests\Admin\JornadaUsuarios\Unit\PoliticaDeSenha)
+ ✔ Limites de tamanho with data set "U01 7 caracteres (abaixo do mínimo)"
+ ✔ Limites de tamanho with data set "U02 8 caracteres (no mínimo)"
+ ✔ Limites de tamanho with data set "U03 64 caracteres (no máximo)"
+ ✔ Limites de tamanho with data set "U04 65 caracteres (acima do máximo)"
+ ✔ Regras de composicao with data set "U05 sem minúscula"
+ ✔ Regras de composicao with data set "U06 sem maiúscula"
+ ✔ Regras de composicao with data set "U07 sem número"
+ ✔ Regras de composicao with data set "U08 sem caractere especial"
+ ✔ Regras de composicao with data set "U09 com espaço, espaços proibidos"
+ ✔ Regras de composicao with data set "U10 com espaço, espaços permitidos"
+ ✔ U 11 senha vazia viola todas as regras mas nao a forca
+ ✔ U 12 forca abaixo da exigida com regras ok
+ ✔ U 13 forca baixa e sem numero mostra so a regra
+ ✔ U 14 minimos negativos sao tratados como zero
+ ✔ U 15 tabela de forca with data set "U15 exige veryWeak, score 0"
+ ✔ U 15 tabela de forca with data set "U15 exige veryWeak, score 1"
+ ✔ U 15 tabela de forca with data set "U15 exige veryWeak, score 2"
+ ✔ U 15 tabela de forca with data set "U15 exige veryWeak, score 3"
+ ✔ U 15 tabela de forca with data set "U15 exige veryWeak, score 4"
+ ✔ U 15 tabela de forca with data set "U15 exige weak, score 0"
+ ✔ U 15 tabela de forca with data set "U15 exige weak, score 1"
+ ✔ U 15 tabela de forca with data set "U15 exige weak, score 2"
+ ✔ U 15 tabela de forca with data set "U15 exige weak, score 3"
+ ✔ U 15 tabela de forca with data set "U15 exige weak, score 4"
+ ✔ U 15 tabela de forca with data set "U15 exige better, score 0"
+ ✔ U 15 tabela de forca with data set "U15 exige better, score 1"
+ ✔ U 15 tabela de forca with data set "U15 exige better, score 2"
+ ✔ U 15 tabela de forca with data set "U15 exige better, score 3"
+ ✔ U 15 tabela de forca with data set "U15 exige better, score 4"
+ ✔ U 15 tabela de forca with data set "U15 exige strong, score 0"
+ ✔ U 15 tabela de forca with data set "U15 exige strong, score 1"
+ ✔ U 15 tabela de forca with data set "U15 exige strong, score 2"
+ ✔ U 15 tabela de forca with data set "U15 exige strong, score 3"
+ ✔ U 15 tabela de forca with data set "U15 exige strong, score 4"
+ ✔ U 15 tabela de forca with data set "U15 exige strongest, score 0"
+ ✔ U 15 tabela de forca with data set "U15 exige strongest, score 1"
+ ✔ U 15 tabela de forca with data set "U15 exige strongest, score 2"
+ ✔ U 15 tabela de forca with data set "U15 exige strongest, score 3"
+ ✔ U 15 tabela de forca with data set "U15 exige strongest, score 4"
+ ✔ U 16 is valid password consistente com mensagens with data set "U01 7 caracteres (abaixo do mínimo)"
+ ✔ U 16 is valid password consistente com mensagens with data set "U02 8 caracteres (no mínimo)"
+ ✔ U 16 is valid password consistente com mensagens with data set "U03 64 caracteres (no máximo)"
+ ✔ U 16 is valid password consistente com mensagens with data set "U04 65 caracteres (acima do máximo)"
+ ✔ U 16 is valid password consistente com mensagens with data set "U05 sem minúscula"
+ ✔ U 16 is valid password consistente com mensagens with data set "U06 sem maiúscula"
+ ✔ U 16 is valid password consistente com mensagens with data set "U07 sem número"
+ ✔ U 16 is valid password consistente com mensagens with data set "U08 sem caractere especial"
+ ✔ U 16 is valid password consistente com mensagens with data set "U09 com espaço, espaços proibidos"
+ ✔ U 16 is valid password consistente com mensagens with data set "U10 com espaço, espaços permitidos"
+ ✔ U 16 is valid password consistente com mensagens with data set "força baixa"
+ ✔ U 16 is valid password consistente com mensagens with data set "vazia"
+
+Regras De Validacao (OrangeHRM\Tests\Admin\JornadaUsuarios\Unit\RegrasDeValidacao)
+ ✔ U 30 regra desligada quando nao ha troca de senha
+ ✔ U 31 padrao e validar senha
+ ✔ U 31b senha sem mensagens e valida
+ ✔ Papel atribuivel with data set "U32 ESS (2) é atribuível"
+ ✔ Papel atribuivel with data set "U32b Admin (1) é atribuível"
+ ✔ Papel atribuivel with data set "U33 Supervisor (3) não é atribuível"
+ ✔ Papel atribuivel with data set "U33b id inexistente (99)"
+ ✔ Papel atribuivel with data set "U34 "2" como string"
+ ✔ Papel atribuivel with data set "U34b null"
+
+User Service Jornada (OrangeHRM\Tests\Admin\JornadaUsuarios\Unit\UserServiceJornada)
+ ✔ U 20 sem nova senha preserva hash e nao chama hasher
+ ✔ U 21 senha vazia remove o hash
+ ✔ U 22 nova senha e hasheada e apagada do decorador
+ ✔ U 22b hash real verifica a senha
+ ✔ U 23 ids dos papeis atribuiveis
+ ✔ U 23b sem papeis atribuiveis
+ ✔ U 24 usuario logado nao pode ser excluido
+ ✔ U 25 sem usuario logado nenhum id bloqueado
+ ✔ U 26 senha atual nula nunca confere
+
+Time: 00:00.683, Memory: 26.00 MB
+
+OK (69 tests, 85 assertions)
