@@ -1,0 +1,10 @@
+{
+  "name": "admin-users-api-tests",
+  "private": true,
+  "type": "module",
+  "description": "Testes de integração da API REST v2 do OrangeHRM (Admin › User Management)",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "test": "node --test --test-reporter=spec --test-reporter-destination=stdout --test-reporter=junit --test-reporter-destination=../../resultados/api-junit.xml"
+  }
+}
