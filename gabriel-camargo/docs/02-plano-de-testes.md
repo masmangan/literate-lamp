@@ -111,10 +111,10 @@ Tabela de decisão de `saveSystemUser` (fora do modo demo):
 
 | ID | Caso | Técnica | Esperado | CA |
 |---|---|---|---|---|
-| U23 | `getAssignableUserRoleIds` com papéis Admin(1) e ESS(2) | — | `[1, 2]` | CA3 |
+| U23 | `getAssignableUserRoleIds` com papéis Admin(1) e ESS(2); e sem papéis | PE | `[1, 2]`; `[]` | CA3 |
 | U24 | `getUndeletableUserIds` com usuário logado id 7 | — | `[7]` | CA5 |
 | U25 | `getUndeletableUserIds` sem usuário logado | ER | `[]` | CA5 |
-| U26 | `getCredentials` com hash MD5 antigo | ER | usuário devolvido e senha regravada com bcrypt | — |
+| U26 | `isCurrentPassword` de conta sem senha (`userPassword = null`, ex.: login social) | ER | `false` para qualquer senha, inclusive `""` | — |
 
 **Regras de validação.**
 
