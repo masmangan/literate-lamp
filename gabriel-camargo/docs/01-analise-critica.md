@@ -61,7 +61,7 @@ Execução no ambiente local (ver [README](../README.md)): `UserAPITest` 27/27, 
    "senha com 7 caracteres" para o endpoint de usuários. Uma mudança que desligasse a regra `Password`
    no `UserAPI` não quebraria nenhum teste de API.
 4. **Espaços em branco não são considerados.** Nenhum caso cobre nome de usuário só com espaços ou com
-   espaços nas pontas. Como veremos na execução (Relatório, seção 3), essa lacuna esconde um defeito.
+   espaços nas pontas. Essa lacuna esconde dois defeitos ([D1 e D2 no relatório de execução](03-relatorio-execucao.md#33-defeitos-encontrados)).
 5. **Front-end e jornada sem teste.** O formulário Vue (`SaveSystemUser.vue`, `EditSystemUser.vue`)
    tem validações próprias (obrigatórios, tamanho, confirmação de senha, verificação assíncrona de nome
    repetido em `/api/v2/admin/validation/user-name`) que **não têm teste algum** — nem Jest, nem Cypress.
