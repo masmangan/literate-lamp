@@ -1,0 +1,57 @@
+# Ambiente local da jornada Admin > User Management (Gabriel Camargo).
+#
+#   db       MariaDB 10.11 (bancos: orangehrm_app, orangehrm_dev, test_orangehrm_dev)
+#   app      OrangeHRM 5.9 (imagem oficial) -> sistema sob teste dos testes de API e de sistema
+#   phpunit  PHP 8.3 CLI com o clone do codigo-fonte montado em /app -> testes PHPUnit
+#
+# Uso: ver ../README.md (secao "Como compilar e rodar os testes").
+name: t2-admin-users
+
+services:
+  db:
+    image: mariadb:10.11
+    environment:
+      MARIADB_ROOT_PASSWORD: root
+    ports:
+      - "3317:3306"
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+    volumes:
+      - db-data:/var/lib/mysql
+
+  app:
+    image: orangehrm/orangehrm:5.9
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8300:80"
+    volumes:
+      - app-html:/var/www/html
+      - ./config/cli_install_app.yaml:/var/www/html/installer/cli_install_config.yaml:ro
+
+  phpunit:
+    build: ./phpunit
+    depends_on:
+      db:
+        condition: service_healthy
+    user: "${HOST_UID:-1000}:${HOST_GID:-1000}"
+    environment:
+      HOME: /tmp
+      COMPOSER_HOME: /tmp/composer
+    working_dir: /app
+    volumes:
+      # Clone de orangehrm/orangehrm (commit 56e23b3). Padrao: ../../../orangehrm
+      - ${OHRM_SRC:-../../../orangehrm}:/app
+      - ./config/cli_install_dev.yaml:/app/installer/cli_install_config.yaml:ro
+      - ./scripts:/scripts:ro
+      # Os testes PHPUnit da jornada entram no plugin Admin (namespace OrangeHRM\Tests\Admin\JornadaUsuarios)
+      - ../testes/php:/app/src/plugins/orangehrmAdminPlugin/test/JornadaUsuarios:ro
+    entrypoint: ["sleep", "infinity"]
+
+volumes:
+  db-data:
+  app-html:
