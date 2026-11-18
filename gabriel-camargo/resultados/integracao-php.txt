@@ -1,0 +1,44 @@
+PHPUnit 9.6.16 by Sebastian Bergmann and contributors.
+
+User Api Jornada (OrangeHRM\Tests\Admin\JornadaUsuarios\Integration\UserApiJornada)
+ ✔ Create with data set "I01 nome com 4 caracteres (abaixo do limite)"
+ ✔ Create with data set "I02 nome com 5 caracteres (no limite inferior)"
+ ✔ Create with data set "I03 nome com 40 caracteres (no limite superior)"
+ ✔ Create with data set "I04 nome com 41 caracteres (acima do limite)"
+ ✔ Create with data set "I05 nome de conta excluída volta a ficar disponível"
+ ✔ Create with data set "I05b nome de conta ativa é recusado"
+ ✔ Create with data set "I06 senha que cumpre as regras mas é fraca (score 2 < strong)"
+ ✔ Create with data set "I07 senha com 65 caracteres"
+ ✔ Create with data set "I07b papel Supervisor não é atribuível"
+ ✔ Update with data set "I08 editar sem trocar a senha"
+ ✔ Update with data set "I09 desativar a conta"
+ ✔ Delete with data set "I10 excluir outra conta"
+ ✔ Delete with data set "I11 excluir a própria conta"
+ ✔ Delete with data set "I11b excluir lote que contém a própria conta"
+ ✔ Delete with data set "I12 excluir id inexistente"
+ ✔ Delete with data set "I12b excluir conta já excluída"
+ ✘ I 13 nome com espacos nas pontas with data set "I13 nome com espaços nas pontas"
+   │
+   │ Given validation closure not throwing OrangeHRM\Core\Api\V2\Exception\InvalidParamException
+   │
+   │ /app/src/test/phpunit/Util/EndpointTestCase.php:99
+   │ /app/src/test/phpunit/Util/EndpointIntegrationTestCase.php:147
+   │ /app/src/plugins/orangehrmAdminPlugin/test/JornadaUsuarios/Integration/UserApiJornadaTest.php:123
+   │
+
+Time: 00:02.036, Memory: 28.00 MB
+
+Summary of non-successful tests:
+
+User Api Jornada (OrangeHRM\Tests\Admin\JornadaUsuarios\Integration\UserApiJornada)
+ ✘ I 13 nome com espacos nas pontas with data set "I13 nome com espaços nas pontas"
+   │
+   │ Given validation closure not throwing OrangeHRM\Core\Api\V2\Exception\InvalidParamException
+   │
+   │ /app/src/test/phpunit/Util/EndpointTestCase.php:99
+   │ /app/src/test/phpunit/Util/EndpointIntegrationTestCase.php:147
+   │ /app/src/plugins/orangehrmAdminPlugin/test/JornadaUsuarios/Integration/UserApiJornadaTest.php:123
+   │
+
+FAILURES!
+Tests: 17, Assertions: 47, Failures: 1.

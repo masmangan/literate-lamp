@@ -1,0 +1,26 @@
+# Instalacao nao interativa do OrangeHRM (servico "app").
+# Credenciais apenas do ambiente local descartavel.
+database:
+  hostName: db
+  hostPort: 3306
+  databaseName: orangehrm_app
+  privilegedDatabaseUser: root
+  privilegedDatabasePassword: root
+  useSameDbUserForOrangeHRM: y
+  orangehrmDatabaseUser: ~
+  orangehrmDatabasePassword: ~
+  isExistingDatabase: n
+  enableDataEncryption: n
+organization:
+  name: OrangeHRM
+  country: BR
+admin:
+  adminUserName: Admin
+  adminPassword: Admin@OHRM123
+  adminEmployeeFirstName: Gabriel
+  adminEmployeeLastName: Admin
+  workEmail: admin@example.com
+  contactNumber: ~
+  registrationConsent: false
+license:
+  agree: y

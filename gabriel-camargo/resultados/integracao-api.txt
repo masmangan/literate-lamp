@@ -1,0 +1,61 @@
+
+> test
+> node --test --test-reporter=spec --test-reporter-destination=stdout --test-reporter=junit --test-reporter-destination=../../resultados/api-junit.xml
+
+▶ Conceder acesso
+  ✔ A01 criar usuário ESS devolve o contrato completo (396.165833ms)
+  ✔ A02 busca por nome, papel e status encontra só o usuário criado (97.148541ms)
+  ✔ A03 nome repetido é recusado e a validação assíncrona concorda (151.527792ms)
+  ✔ A04 papel Supervisor (não atribuível) é recusado (60.839667ms)
+  ✔ A05 usuário ESS não acessa a gestão de usuários (498.098958ms)
+✔ Conceder acesso (1867.306541ms)
+▶ Ajustar e revogar acesso
+  ✔ A06 conta desativada não consegue entrar (567.731167ms)
+  ✔ A07 desativar encerra uma sessão já aberta (570.124625ms)
+  ✔ A08 excluir remove a conta (GET passa a 404) (77.787791ms)
+  ✔ A09 administrador não pode excluir a si mesmo (74.914542ms)
+✔ Ajustar e revogar acesso (1686.880333ms)
+▶ Espaços no nome de usuário (CA6)
+  ✖ A10 nome com espaços nas pontas é recusado ou normalizado (411.176375ms)
+  ✖ A11 não podem existir dois nomes visualmente iguais (464.056ms)
+✖ Espaços no nome de usuário (CA6) (875.983334ms)
+ℹ tests 11
+ℹ suites 3
+ℹ pass 9
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4611.112125
+
+✖ failing tests:
+
+test at usuarios.test.js:141:3
+✖ A10 nome com espaços nas pontas é recusado ou normalizado (411.176375ms)
+  AssertionError [ERR_ASSERTION]: esperado 422 ou nome sem espaços; obtido 200 com userName="  esp.drf7j225  "
+      at TestContext.<anonymous> (file:///Users/gabrielcaamargo/Documents/pucrs/t2-vereval/literate-lamp/gabriel-camargo/testes/api/usuarios.test.js:143:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async Test.run (node:internal/test_runner/test:1054:7)
+      at async Promise.all (index 0)
+      at async Suite.run (node:internal/test_runner/test:1442:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:744:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '=='
+  }
+
+test at usuarios.test.js:149:3
+✖ A11 não podem existir dois nomes visualmente iguais (464.056ms)
+  AssertionError [ERR_ASSERTION]: existem 2 usuários exibidos como "esp.drf7j225": "  esp.drf7j225  ", "esp.drf7j225"
+      at TestContext.<anonymous> (file:///Users/gabrielcaamargo/Documents/pucrs/t2-vereval/literate-lamp/gabriel-camargo/testes/api/usuarios.test.js:154:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async Test.run (node:internal/test_runner/test:1054:7)
+      at async Suite.processPendingSubtests (node:internal/test_runner/test:744:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '=='
+  }

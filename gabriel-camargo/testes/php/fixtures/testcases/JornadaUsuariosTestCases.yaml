@@ -1,0 +1,173 @@
+# Casos de integração I01–I13 (docs/02-plano-de-testes.md, seção 2.4.2).
+# Formato do próprio OrangeHRM (EndpointIntegrationTestCase): body/attributes -> data | invalidOnly | exception.
+# Executados contra o banco de testes real (test_orangehrm_dev) com a fixture JornadaUsuarios.yaml.
+
+_servicos: &servicos
+  core.class_helper: \OrangeHRM\Core\Helper\ClassHelper
+  core.config_service: \OrangeHRM\Core\Service\ConfigService
+  admin.user_service: \OrangeHRM\Admin\Service\UserService
+  pim.employee_service: \OrangeHRM\Pim\Service\EmployeeService
+  oidc.social_media_auth_service: \OrangeHRM\OpenidAuthentication\Service\SocialMediaAuthenticationService
+  auth.password_strength_service: \OrangeHRM\Authentication\Service\PasswordStrengthService
+
+_servicos_delete: &servicos_delete
+  core.class_helper: \OrangeHRM\Core\Helper\ClassHelper
+  core.config_service: \OrangeHRM\Core\Service\ConfigService
+  admin.user_service: \OrangeHRM\Admin\Service\UserService
+  pim.employee_service: \OrangeHRM\Pim\Service\EmployeeService
+
+_servicos_update: &servicos_update
+  core.class_helper: \OrangeHRM\Core\Helper\ClassHelper
+  core.config_service: \OrangeHRM\Core\Service\ConfigService
+  admin.user_service: \OrangeHRM\Admin\Service\UserService
+  pim.employee_service: \OrangeHRM\Pim\Service\EmployeeService
+  oidc.social_media_auth_service: \OrangeHRM\OpenidAuthentication\Service\SocialMediaAuthenticationService
+
+_fabricas: &fabricas
+  core.authorization.user_role_manager: [ '\OrangeHRM\Core\Authorization\Manager\UserRoleManagerFactory', 'getNewUserRoleManager' ]
+
+_joana: &joana { "empNumber": 2, "employeeId": "0002", "firstName": "Joana", "middleName": "", "lastName": "Teste", "terminationId": null }
+_ess: &ess { "id": 2, "name": "ESS", "displayName": "ESS" }
+
+Create:
+  'I01 nome com 4 caracteres (abaixo do limite)':
+    userId: 1
+    services: *servicos
+    factories: *fabricas
+    body: { "username": "joan", "password": "Senha@Forte2026x", "status": true, "userRoleId": 2, "empNumber": 2 }
+    invalidOnly: [ "username" ]
+
+  'I02 nome com 5 caracteres (no limite inferior)':
+    userId: 1
+    now: { datetime: '2026-11-17' }
+    services: *servicos
+    factories: *fabricas
+    body: { "username": "joana", "password": "Senha@Forte2026x", "status": true, "userRoleId": 2, "empNumber": 2 }
+    data: { "id": 4, "userName": "joana", "deleted": false, "status": true, "employee": *joana, "userRole": *ess }
+    meta: [ ]
+
+  'I03 nome com 40 caracteres (no limite superior)':
+    userId: 1
+    now: { datetime: '2026-11-17' }
+    services: *servicos
+    factories: *fabricas
+    body: { "username": "nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn", "password": "Senha@Forte2026x", "status": true, "userRoleId": 2, "empNumber": 2 }
+    data: { "id": 4, "userName": "nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn", "deleted": false, "status": true, "employee": *joana, "userRole": *ess }
+    meta: [ ]
+
+  'I04 nome com 41 caracteres (acima do limite)':
+    userId: 1
+    services: *servicos
+    factories: *fabricas
+    body: { "username": "nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn", "password": "Senha@Forte2026x", "status": true, "userRoleId": 2, "empNumber": 2 }
+    invalidOnly: [ "username" ]
+
+  'I05 nome de conta excluída volta a ficar disponível':
+    userId: 1
+    now: { datetime: '2026-11-17' }
+    services: *servicos
+    factories: *fabricas
+    body: { "username": "antiga.conta", "password": "Senha@Forte2026x", "status": true, "userRoleId": 2, "empNumber": 2 }
+    data: { "id": 4, "userName": "antiga.conta", "deleted": false, "status": true, "employee": *joana, "userRole": *ess }
+    meta: [ ]
+
+  'I05b nome de conta ativa é recusado':
+    userId: 1
+    services: *servicos
+    factories: *fabricas
+    body: { "username": "pedro.souza", "password": "Senha@Forte2026x", "status": true, "userRoleId": 2, "empNumber": 2 }
+    invalidOnly: [ "username" ]
+
+  'I06 senha que cumpre as regras mas é fraca (score 2 < strong)':
+    userId: 1
+    services: *servicos
+    factories: *fabricas
+    body: { "username": "joana.teste", "password": "Qz7#kLp2", "status": true, "userRoleId": 2, "empNumber": 2 }
+    invalidOnly: [ "password" ]
+
+  'I07 senha com 65 caracteres':
+    userId: 1
+    services: *servicos
+    factories: *fabricas
+    body: { "username": "joana.teste", "password": "Aa1@u8jzPde0IgxLd6GncfBAepfJBd0Kh8oOOL8dKLzdocJ2isAjIhKtJ0RlgLKOm", "status": true, "userRoleId": 2, "empNumber": 2 }
+    invalidOnly: [ "password" ]
+
+  'I07b papel Supervisor não é atribuível':
+    userId: 1
+    services: *servicos
+    factories: *fabricas
+    body: { "username": "joana.teste", "password": "Senha@Forte2026x", "status": true, "userRoleId": 3, "empNumber": 2 }
+    invalidOnly: [ "userRoleId" ]
+
+Update:
+  'I08 editar sem trocar a senha':
+    userId: 1
+    now: { datetime: '2026-11-17' }
+    services: *servicos_update
+    factories: *fabricas
+    attributes: { id: 2 }
+    body: { "username": "pedro.souza", "password": "", "changePassword": false, "status": true, "userRoleId": 1, "empNumber": 3 }
+    data: { "id": 2, "userName": "pedro.souza", "deleted": false, "status": true,
+            "employee": { "empNumber": 3, "employeeId": "0003", "firstName": "Pedro", "middleName": "", "lastName": "Souza", "terminationId": null },
+            "userRole": { "id": 1, "name": "Admin", "displayName": "Admin" } }
+    meta: [ ]
+
+  'I09 desativar a conta':
+    userId: 1
+    now: { datetime: '2026-11-17' }
+    services: *servicos_update
+    factories: *fabricas
+    attributes: { id: 2 }
+    body: { "username": "pedro.souza", "password": "", "changePassword": false, "status": false, "userRoleId": 2, "empNumber": 3 }
+    data: { "id": 2, "userName": "pedro.souza", "deleted": false, "status": false,
+            "employee": { "empNumber": 3, "employeeId": "0003", "firstName": "Pedro", "middleName": "", "lastName": "Souza", "terminationId": null },
+            "userRole": *ess }
+    meta: [ ]
+
+Delete:
+  'I10 excluir outra conta':
+    userId: 1
+    services: *servicos_delete
+    factories: *fabricas
+    body: { "ids": [ 2 ] }
+    data: [ 2 ]
+    meta: [ ]
+
+  'I11 excluir a própria conta':
+    userId: 1
+    services: *servicos_delete
+    factories: *fabricas
+    body: { "ids": [ 1 ] }
+    invalidOnly: [ "ids" ]
+
+  'I11b excluir lote que contém a própria conta':
+    userId: 1
+    services: *servicos_delete
+    factories: *fabricas
+    body: { "ids": [ 2, 1 ] }
+    invalidOnly: [ "ids" ]
+
+  'I12 excluir id inexistente':
+    userId: 1
+    services: *servicos_delete
+    factories: *fabricas
+    body: { "ids": [ 999 ] }
+    exception:
+      class: \OrangeHRM\Core\Api\V2\Exception\RecordNotFoundException
+
+  'I12b excluir conta já excluída':
+    userId: 1
+    services: *servicos_delete
+    factories: *fabricas
+    body: { "ids": [ 3 ] }
+    exception:
+      class: \OrangeHRM\Core\Api\V2\Exception\RecordNotFoundException
+
+EspacosNoNome:
+  'I13 nome com espaços nas pontas':
+    userId: 1
+    now: { datetime: '2026-11-17' }
+    services: *servicos
+    factories: *fabricas
+    body: { "username": "  joana.t  ", "password": "Senha@Forte2026x", "status": true, "userRoleId": 2, "empNumber": 2 }
+    invalidOnly: [ "username" ]

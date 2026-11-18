@@ -1,0 +1,91 @@
+# Testes originais do OrangeHRM (commit 56e23b3) relacionados à jornada — 2026-11-17 21:11
+## Api/UserAPITest
+PHPUnit 9.6.16 by Sebastian Bergmann and contributors.
+
+User API (OrangeHRM\Tests\Admin\Api\UserAPI)
+ ✔ Get all with data set "get all with limit"
+ ✔ Get all with data set "get all with offset"
+ ✔ Get all with data set "get all - filter by status=false"
+ ✔ Get all with data set "get all - filter by deleted username"
+ ✔ Get all with data set "get all - filter by partial username"
+ ✔ Get all with data set "get all - filter by empNumber"
+ ✔ Get all with data set "get all - filter by terminated empNumber"
+ ✔ Get all with data set "get all with sortField"
+ ✔ Get all with data set "get all - filter by userRoleId"
+ ✔ Get one with data set "get one for deleted user"
+ ✔ Get one with data set "get one - invalid id"
+ ✔ Get one with data set "get user for terminated employee"
+ ✔ Create with data set "create an user"
+ ✔ Create with data set "create disabled user"
+ ✔ Create with data set "create user with employee who have middle name"
+ ✔ Create with data set "create user with non-existing empNumber"
+ ✔ Create with data set "create user with existing username"
+ ✔ Create with data set "create user with non-assignable user role"
+ ✔ Create with data set "create user with existing but deleted username"
+ ✔ Create with data set "create an user - OIDC Enabled"
+ ✔ Update with data set "update an user"
+ ✔ Update with data set "update an user's employee"
+ ✔ Update with data set "update an user with existing username"
+ ✔ Update with data set "update an user with deleted existing username"
+ ✔ Update with data set "update user's password with empty string"
+ ✔ Update with data set "update user's password"
+ ✔ Update with data set "update user - reject non-assignable user role"
+
+Time: 00:02.885, Memory: 30.00 MB
+
+OK (27 tests, 74 assertions)
+## Service/UserServiceTest
+PHPUnit 9.6.16 by Sebastian Bergmann and contributors.
+
+User Service (OrangeHRM\Tests\Admin\Service\UserService)
+ ✔ Save system user no password change
+ ✔ Save system user with password change
+ ✔ Is current password user not found
+ ✔ Is current password true
+ ✔ Is current password with null password
+ ✔ Is current password old hash
+ ✔ Is current password false
+ ✔ Get credentials user not found
+ ✔ Get credentials valid password
+ ✔ Get credentials old hash
+ ✔ Get credentials invalid password
+ ✔ Get undeletable user ids
+
+Time: 00:01.782, Memory: 12.00 MB
+
+OK (12 tests, 30 assertions)
+## Dao/UserDaoTest
+PHPUnit 9.6.16 by Sebastian Bergmann and contributors.
+
+User Dao (OrangeHRM\Tests\Admin\Dao\UserDao)
+ ✔ Save system user
+ ✔ Is existing system user for non existing user
+ ✔ Is existing system user for existing user
+ ✔ Is existing system user for deleted user
+ ✔ Is existing system user for empty password user
+ ✔ Get system user
+ ✔ Get system user for non existing id
+ ✔ Get assignable user roles
+ ✔ Get system user id list
+ ✔ Get system user id list for one active user
+ ✔ Get employees by user role
+ ✔ User status by user name
+
+Time: 00:00.285, Memory: 16.00 MB
+
+OK (12 tests, 22 assertions)
+## Authentication/PasswordStrengthServiceTest
+PHPUnit 9.6.16 by Sebastian Bergmann and contributors.
+
+Password Strength Service (OrangeHRM\Tests\Authentication\Service\PasswordStrengthService)
+ ✔ Get enforce password dao
+ ✔ Check password policies
+ ✔ Is valid password
+ ✔ Log password enforce request
+ ✔ Validate url
+ ✔ Get user name by reset code
+ ✔ Save enforced password
+
+Time: 00:00.685, Memory: 18.00 MB
+
+OK (7 tests, 12 assertions)

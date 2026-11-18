@@ -1,0 +1,78 @@
+<testsuites id="" name="" tests="7" failures="1" skipped="0" errors="0" time="53.623644999999996">
+<testsuite name="formulario.spec.js" timestamp="2026-11-18T00:25:54.600Z" hostname="chromium" tests="6" failures="1" skipped="0" time="30.497" errors="0">
+<testcase name="S02 salvar o formulário vazio marca todos os obrigatórios" classname="formulario.spec.js" time="2.272">
+</testcase>
+<testcase name="S03 nome com 4 caracteres é recusado (limite inferior)" classname="formulario.spec.js" time="2.828">
+</testcase>
+<testcase name="S04 nome já existente é apontado antes de salvar" classname="formulario.spec.js" time="2.829">
+</testcase>
+<testcase name="S05 confirmação diferente da senha é recusada" classname="formulario.spec.js" time="2.054">
+</testcase>
+<testcase name="S06 cancelar o diálogo de exclusão mantém a conta" classname="formulario.spec.js" time="8.645">
+</testcase>
+<testcase name="S07 nome &quot;  abcd  &quot; (4 letras + espaços) deve ser recusado no próprio campo" classname="formulario.spec.js" time="11.869">
+<properties>
+<property name="D2" value="POST {&quot;username&quot;:&quot;abcd&quot;,&quot;password&quot;:&quot;Senha@Forte2026x&quot;,&quot;status&quot;:true,&quot;userRoleId&quot;:2,&quot;empNumber&quot;:13} -&gt; 422">
+</property>
+</properties>
+<failure message="formulario.spec.js:87:1 S07 nome &quot;  abcd  &quot; (4 letras + espaços) deve ser recusado no próprio campo" type="FAILURE">
+<![CDATA[  [chromium] › formulario.spec.js:87:1 › S07 nome "  abcd  " (4 letras + espaços) deve ser recusado no próprio campo 
+
+    Error: expect(locator).toHaveText(expected) failed
+
+    Locator: locator('.oxd-input-group').filter({ has: getByText('Username', { exact: true }) }).locator('.oxd-input-field-error-message')
+    Expected: "Should be at least 5 characters"
+    Timeout: 3000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "soft toHaveText" with timeout 3000ms
+      - waiting for locator('.oxd-input-group').filter({ has: getByText('Username', { exact: true }) }).locator('.oxd-input-field-error-message')
+
+
+       96 |   await campo(page, 'Confirm Password').locator('input').fill('Senha@Forte2026x');
+       97 |   await page.waitForTimeout(800); // validação assíncrona do nome (debounce de 500 ms)
+    >  98 |   await expect.soft(erroDe(page, 'Username')).toHaveText('Should be at least 5 characters', { timeout: 3000 });
+          |                                               ^
+       99 |
+      100 |   // Se o campo não acusar o erro, o formulário é enviado: registramos o que o usuário vê.
+      101 |   const post = page.waitForResponse((r) => r.request().method() === 'POST' && r.url().includes('/api/v2/admin/users'), { timeout: 5000 }).catch(() => null);
+        at /Users/gabrielcaamargo/Documents/pucrs/t2-vereval/literate-lamp/gabriel-camargo/testes/sistema/tests/formulario.spec.js:98:47
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/formulario-S07-nome-abcd-4-910e4-r-recusado-no-próprio-campo-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/formulario-S07-nome-abcd-4-910e4-r-recusado-no-próprio-campo-chromium/error-context.md
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/formulario-S07-nome-abcd-4-910e4-r-recusado-no-próprio-campo-chromium/test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../test-results/formulario-S07-nome-abcd-4-910e4-r-recusado-no-próprio-campo-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace ../test-results/formulario-S07-nome-abcd-4-910e4-r-recusado-no-próprio-campo-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|../testes/sistema/test-results/formulario-S07-nome-abcd-4-910e4-r-recusado-no-próprio-campo-chromium/test-failed-1.png]]
+
+[[ATTACHMENT|../testes/sistema/test-results/formulario-S07-nome-abcd-4-910e4-r-recusado-no-próprio-campo-chromium/error-context.md]]
+
+[[ATTACHMENT|../testes/sistema/test-results/formulario-S07-nome-abcd-4-910e4-r-recusado-no-próprio-campo-chromium/test-failed-2.png]]
+
+[[ATTACHMENT|../testes/sistema/test-results/formulario-S07-nome-abcd-4-910e4-r-recusado-no-próprio-campo-chromium/trace.zip]]
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="jornada.spec.js" timestamp="2026-11-18T00:25:54.600Z" hostname="chromium" tests="1" failures="0" skipped="0" time="17.156" errors="0">
+<testcase name="S01 administradora concede, ajusta e revoga o acesso de uma funcionária" classname="jornada.spec.js" time="17.156">
+</testcase>
+</testsuite>
+</testsuites>
